@@ -1,5 +1,7 @@
-package de.neuefische.backend;
+package de.neuefische.backend.controller;
 
+import de.neuefische.backend.product.ToDo;
+import de.neuefische.backend.service.ToDoService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -13,12 +15,10 @@ public class ToDoController {
 
     @GetMapping
     public List<ToDo> getTodos() {
-
         return todoService.listTodos();
     }
     @PostMapping
     public ToDo addTodo(@RequestBody ToDo toDo) {
-
         return todoService.addTodo(toDo);
     }
     @GetMapping("/{id}")
@@ -28,5 +28,9 @@ public class ToDoController {
     @PutMapping("/{id}")
     public ToDo changeToDoStatusById(@RequestBody ToDo todo, @PathVariable String id){
         return todoService.changeToDoStatusById(todo,id);
+    }
+    @DeleteMapping("/{id}")
+    public ToDo deleteToDoById(@PathVariable String id){
+        return todoService.deleteToDoById(id);
     }
 }
